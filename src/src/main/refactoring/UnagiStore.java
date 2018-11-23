@@ -24,19 +24,21 @@ public class UnagiStore {
             Chairs chair = new Chairs(capacity);
             int parties = Integer.parseInt(tableAndParties.split(" ")[1]);
 
-            int[][] groups = createGroups(sc, parties);
+            Group[] groups = createGroups(sc, parties);
 
             result = execute(chair, groups);
         }
         System.out.println(result);
     }
 
-    private static int[][] createGroups(Scanner sc, int parties) {
-        int[][] groups = new int[parties][2];
+    private static Group[] createGroups(Scanner sc, int parties) {
+        Group[] groups = new Group[parties];
         for (int i = 0; i < parties; i++) {
             String[] groupAndPosition = sc.nextLine().split(" ");
-            groups[i][0] = Integer.parseInt(groupAndPosition[0]);
-            groups[i][1] = Integer.parseInt(groupAndPosition[1]);
+            int member = Integer.parseInt(groupAndPosition[0]);
+            int position = Integer.parseInt(groupAndPosition[1]);
+
+            groups[i] = new Group(member, position);
         }
         return groups;
     }
@@ -50,14 +52,10 @@ public class UnagiStore {
      * @param groups 入力グループ情報
      * @return 着席数
      */
-    public static int execute(Chairs chair, int[][] groups) {
+    public static int execute(Chairs chair, Group[] groups) {
 
-        for (int grpCnt = 0; grpCnt < groups.length; grpCnt++) {
-
-            int customers = groups[grpCnt][0];
-            int position = groups[grpCnt][1];
-
-            chair.occupyIfAvailable(customers, position);
+        for (Group group : groups) {
+            chair.occupyIfAvailable(group);
         }
         return chair.countOccupied();
     }

@@ -42,17 +42,16 @@ public class Chairs {
      * @param customers 客数
      * @param position 指定席
      */
-    public void occupyIfAvailable(int customers, int position) {
-
-        if (hasAlreadyOccupied(customers, position)) {
+    public void occupyIfAvailable(Group group) {
+        if (hasAlreadyOccupied(group)) {
             return;
         }
-        occupySeat(customers, position);
+        occupySeat(group);
     }
 
-    private boolean hasAlreadyOccupied(int customers, int position) {
-        int posit = position - 1;
-        for (int i = 0; i < customers; i++) {
+    private boolean hasAlreadyOccupied(Group group) {
+        int posit = group.getPosition()-1;
+        for (int i = 0; i < group.getNumber(); i++) {
             if (chairs[posit % chairs.length]) {
                 return true;
             }
@@ -61,9 +60,9 @@ public class Chairs {
         return false;
     }
 
-    private void occupySeat(int customers, int position) {
-        int posit = position - 1;
-        for (int i = 0; i < customers; i++) {
+    private void occupySeat(Group group) {
+        int posit = group.getPosition()-1;
+        for (int i = 0; i < group.getNumber(); i++) {
             chairs[posit % chairs.length] = true;
             posit++;
         }
