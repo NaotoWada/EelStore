@@ -27,4 +27,27 @@ public class EelShopTest {
         assertThat(result, is(12));
     }
 
+    @Test
+    public void test_4人テーブルに1名と1名の2つのグループだった場合で指定先が被った場合は1名のみ座れる() {
+        int table = 4;
+        int[][] group = new int[][] { { 1, 4 }, { 1, 4 } };
+        int result = UnagiStore.execute(table, group);
+        assertThat(result, is(1));
+    }
+
+    @Test
+    public void test_4人テーブルに1名と4名の2つのグループだった場合に1名のみ座れる() {
+        int table = 4;
+        int[][] group = new int[][] { { 1, 4 }, { 4, 1 } };
+        int result = UnagiStore.execute(table, group);
+        assertThat(result, is(1));
+    }
+
+    @Test
+    public void test_4人テーブルに4名1グループだった場合に4名が全員座れる() {
+        int table = 4;
+        int[][] group = new int[][] { { 4, 1 } };
+        int result = UnagiStore.execute(table, group);
+        assertThat(result, is(4));
+    }
 }
