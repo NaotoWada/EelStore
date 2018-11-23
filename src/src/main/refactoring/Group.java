@@ -17,5 +17,5 @@ public class Group {
     public int getPosition() {
         return this.position;
     }
-
+    
 }

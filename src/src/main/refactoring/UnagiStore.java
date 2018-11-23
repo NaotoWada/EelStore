@@ -20,10 +20,10 @@ public class UnagiStore {
         int result = 0;
         try (Scanner sc = new Scanner(System.in)) {
             String tableAndParties = sc.nextLine();
-            int capacity = Integer.parseInt(tableAndParties.split(" ")[0]);
-            Chairs chair = new Chairs(capacity);
-            int parties = Integer.parseInt(tableAndParties.split(" ")[1]);
+            int capacity = convertInt(tableAndParties.split(" ")[0]);
+            int parties = convertInt(tableAndParties.split(" ")[1]);
 
+            Chairs chair = new Chairs(capacity);
             Group[] groups = createGroups(sc, parties);
 
             result = execute(chair, groups);
@@ -35,12 +35,16 @@ public class UnagiStore {
         Group[] groups = new Group[parties];
         for (int i = 0; i < parties; i++) {
             String[] groupAndPosition = sc.nextLine().split(" ");
-            int member = Integer.parseInt(groupAndPosition[0]);
-            int position = Integer.parseInt(groupAndPosition[1]);
+            int member = convertInt(groupAndPosition[0]);
+            int position = convertInt(groupAndPosition[1]);
 
             groups[i] = new Group(member, position);
         }
         return groups;
+    }
+
+    private static int convertInt(String strNum){
+        return Integer.parseInt(strNum);
     }
 
     /**
