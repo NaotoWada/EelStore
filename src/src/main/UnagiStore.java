@@ -11,6 +11,10 @@ import java.util.Scanner;
  */
 public class UnagiStore {
 
+    /**
+     * paiza用のメイン関数
+     * @param args
+     */
     public static void main(String[] args) {
 
         int result = 0;
@@ -36,6 +40,15 @@ public class UnagiStore {
         return groups;
     }
 
+    /**
+     * 実行関数.
+     * <p>
+     * 座席数と入力グループの情報から顧客を着席させる.<br>
+     *
+     * @param capacity 座席数
+     * @param groups 入力グループ情報
+     * @return 着席数
+     */
     public static int execute(int capacity, int[][] groups) {
 
         Chairs chair = new UnagiStore().new Chairs(capacity);
@@ -111,12 +124,6 @@ public class UnagiStore {
             return false;
         }
 
-        /**
-         * 指定された座席数から顧客を着席させる.
-         * <p>
-         * @param customers
-         * @param position
-         */
         private void occupySeat(int customers, int position) {
             int posit = position - 1;
             for (int i = 0; i < customers; i++) {
