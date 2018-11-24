@@ -43,7 +43,7 @@ public class UnagiStore {
         return groups;
     }
 
-    private static int convertInt(String strNum){
+    private static int convertInt(String strNum) {
         return Integer.parseInt(strNum);
     }
 
@@ -51,10 +51,11 @@ public class UnagiStore {
      * 実行関数.
      * <p>
      * 座席数と入力グループの情報から顧客を着席させる.<br>
+     * グループ毎に毎回判定を行った後、席に座れるようなら着席させる<br>
      *
-     * @param chair 座席数
-     * @param groups 入力グループ情報
-     * @return 着席数
+     * @param chair 座席情報
+     * @param groups グループ情報配列
+     * @return
      */
     public static int execute(Chairs chair, Group[] groups) {
 

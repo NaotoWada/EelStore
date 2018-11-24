@@ -38,9 +38,9 @@ public class Chairs {
      * 例えば、席数：4, 客数x, 指定席5<br>
      * <p>
      * 顧客が連番で座れない場合は着席させない.<br>
-     * 例えば、席数：4, グループ1[客2, 指定席1], グループ2[客2, 指定席2]
-     * @param customers 客数
-     * @param position 指定席
+     * 例えば、席数：4, グループ1[客2, 指定席1], グループ2[客2, 指定席2]<br>
+     *
+     * @param group 指定席情報と顧客数が入ったグループ情報
      */
     public void occupyIfAvailable(Group group) {
         if (hasAlreadyOccupied(group)) {
@@ -50,7 +50,7 @@ public class Chairs {
     }
 
     private boolean hasAlreadyOccupied(Group group) {
-        int posit = group.getPosition()-1;
+        int posit = group.getPosition() - 1;
         for (int i = 0; i < group.getNumber(); i++) {
             if (chairs[posit % chairs.length]) {
                 return true;
@@ -61,7 +61,7 @@ public class Chairs {
     }
 
     private void occupySeat(Group group) {
-        int posit = group.getPosition()-1;
+        int posit = group.getPosition() - 1;
         for (int i = 0; i < group.getNumber(); i++) {
             chairs[posit % chairs.length] = true;
             posit++;
